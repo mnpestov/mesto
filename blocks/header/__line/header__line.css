@@ -1,0 +1,10 @@
+.header__line {
+    width: 100%;
+    margin: 41px auto 0;
+}
+
+@media screen and (max-width: 767px) {
+  .header__line {
+    margin: 32px auto 0;
+  }
+}

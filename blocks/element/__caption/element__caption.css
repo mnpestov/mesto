@@ -1,0 +1,7 @@
+.element__caption {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 29px;
+    justify-content: space-between;
+    margin: 25px 20px 31px 21px;
+}

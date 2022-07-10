@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <img class="logo" src="images/logo.svg" alt="Лого">
+      <img class="header__line" src="images/line.jpg" alt="линия">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="images/avatar-square.jpg" alt="Аватар">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="button button_type_edit opacity-transition opacity-transition_type_06"></button>
+          <p class="profile__about-me">Исследователь океана</p>
+        </div>
+        <button class="button button_type_add opacity-transition opacity-transition_type_06"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+            <img class="element__image" src="images/kamchatka.jpg" alt="Камчатка">
+            <div class="element__caption">
+              <p class="element__title">Камчатка</p>
+              <div class="element__like opacity-transition opacity-transition_type_05"></div>
+            </div>
+          </div>
+        <div class="element">
+            <img class="element__image" src="images/elbrus.jpg" alt="Эльбрус">
+            <div class="element__caption">
+              <p class="element__title">Эльбрус</p>
+              <div class="element__like opacity-transition opacity-transition_type_05"></div>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="images/dombai.jpg" alt="Домбай">
+            <div class="element__caption">
+              <p class="element__title">Домбай</p>
+              <div class="element__like opacity-transition opacity-transition_type_05"></div>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="images/karachaevsk.jpg" alt="Карачаевск">
+            <div class="element__caption">
+              <p class="element__title">Карачаево-Черкессия</p>
+              <div class="element__like opacity-transition opacity-transition_type_05"></div>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="images/baikal.jpg" alt="Байкал">
+            <div class="element__caption">
+              <p class="element__title">Байкал</p>
+              <div class="element__like opacity-transition opacity-transition_type_05"></div>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__image" src="images/altay.jpg" alt="Алтай">
+            <div class="element__caption">
+              <p class="element__title">Алтай</p>
+              <div class="element__like opacity-transition opacity-transition_type_05"></div>
+            </div>
+          </div>
+      </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <form class="popup__container">
+        <img class="popup__close opacity-transition opacity-transition_type_06" src="images/Close Icon.svg" alt="иконка закрытия попапа">
+        <p class="popup__title">Редактировать профиль</p>
+        <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
+        <input type="text" placeholder="О себе" class="popup__input popup__input_type_about-me">
+        <button class="button button_type_save opacity-transition opacity-transition_type_08">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

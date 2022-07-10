@@ -1,0 +1,7 @@
+.popup__close {
+    width: 32px;
+    margin-top: -40px;
+    margin-right: -40px;
+    align-self: end;
+    cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.popup__input {
+  margin: 0 auto 30px;
+  width: 358px;
+  box-sizing: border-box;
+}
+
+.popup__input:last-child {
+  margin: 0 auto 48px;
+}
