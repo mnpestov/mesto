@@ -18,7 +18,6 @@ function closePopup() {
 function saveAndClosePopup() {
   let inputName = document.querySelector('.popup__input_type_name');
   let inputAboutMe = document.querySelector('.popup__input_type_about-me');
-  let popup = document.querySelector('.popup');
   let name = document.querySelector('.profile__name');
   let aboutMe = document.querySelector('.profile__about-me');
   name.textContent = inputName.value;
@@ -32,5 +31,6 @@ closeBtn.addEventListener('click', closePopup);
 for (let i = 0; i < heart.length; i++) {
   heart[i].addEventListener('click', function(){
     heart[i].classList.toggle('element__like_active');
+    heart[i].classList.toggle('opacity-transition_type_05');
   });
 }
