@@ -8,20 +8,20 @@ let inputName = page.querySelector('.popup__input_type_name');
 let inputAboutMe = page.querySelector('.popup__input_type_about-me');
 let profileName = page.querySelector('.profile__name');
 let aboutMe = page.querySelector('.profile__about-me');
+let popupForm = page.querySelector('.popup');
 
 function openPopup() {
-  let popup = page.querySelector('.popup');
-  popup.classList.add('popup_opened');
+  popupForm.classList.add('popup_opened');
   inputName.value = profileName.textContent;
   inputAboutMe.value = aboutMe.textContent;
 }
 
 function closePopup() {
-  let popup = page.querySelector('.popup');
-  popup.classList.remove('popup_opened');
+  popupForm.classList.remove('popup_opened');
 }
 
-function saveAndClosePopup() {
+function saveAndClosePopup(evt) {
+  evt.preventDefault();
   profileName.textContent = inputName.value;
   aboutMe.textContent = inputAboutMe.value;
   closePopup();
@@ -32,7 +32,7 @@ function putLike(index) {
 }
 
 editBtn.addEventListener('click', openPopup);
-saveBtn.addEventListener('click', saveAndClosePopup);
+popupForm.addEventListener('submit', saveAndClosePopup);
 closeBtn.addEventListener('click', closePopup);
 
 for (let i = 0; i < heart.length; i++) {
