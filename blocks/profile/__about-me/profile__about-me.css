@@ -9,12 +9,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: min(508px, calc(68.75vw * .5));
 }
 
 @media screen and (max-width: 1024px) {
   .profile__about-me {
     grid-column-start: span 2;
     justify-self: center;
+    max-width: max(282px, 69vw);
   }
 }
 
