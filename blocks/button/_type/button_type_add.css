@@ -4,11 +4,14 @@
     height: 50px;
     margin: auto 0;
     justify-self: end;
+    border-width: 2px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .button_type_add {
     width: max(100%, 282px);
     justify-self: center;
+    margin-top: 6px;
+    background-size: 16px;
   }
 }

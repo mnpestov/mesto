@@ -3,7 +3,7 @@
     max-width: min(880px, 68.75vw);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .page {
     max-width: min(704px, 88vw);
   }
@@ -11,6 +11,6 @@
 
 @media screen and (max-width: 767px) {
   .page {
-    max-width: max(282px, 88.1vw);
+    min-width: 320px;
   }  
 }

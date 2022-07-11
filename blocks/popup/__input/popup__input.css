@@ -1,11 +1,15 @@
 .popup__input {
-  margin: 0 auto 30px;
-  width: 358px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  width: calc(100% * 358/430);
+  height: 36px;
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-}
-
-.popup__input:last-child {
-  margin: 0 auto 48px;
+  padding: 0;
+  margin-bottom: 22px;
 }

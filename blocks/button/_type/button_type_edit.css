@@ -2,6 +2,13 @@
     width: 24px;
     height: 24px;
     background-image: url(../../../images/editBtn.svg);
-    margin: 0;
-    align-self: center;
+    margin: 15px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .button_type_edit {
+    width: 18px;
+    height: 18px;
+    margin-top: 8px;
+  }    
 }
