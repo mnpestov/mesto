@@ -28,7 +28,7 @@ function saveAndClosePopup(evt) {
 }
 function putLike(index) {
   heart[index].classList.toggle('element__like_active');
-  heart[index].classList.toggle('opacity-transition_type_05');
+  heart[index].classList.toggle('opacity-transition_type_small');
 }
 
 editBtn.addEventListener('click', openPopup);

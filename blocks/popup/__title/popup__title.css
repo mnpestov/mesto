@@ -7,3 +7,13 @@
   color: #000000;
   margin: 41px 64px 40px 36px;
 }
+
+@media screen and (max-width: 767px) {
+  .popup__title {
+    margin-top: 33px;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 42px auto 65px;
+    width: max(calc(100% * 358/430), 238px);
+  }
+}
