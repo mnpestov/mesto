@@ -5,6 +5,7 @@
     margin: auto 0;
     justify-self: end;
     border-width: 2px;
+    border-radius: 2px;
 }
 
 @media screen and (max-width: 1023px) {

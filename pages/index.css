@@ -22,9 +22,9 @@
 @import url(../blocks/button/_type/button_type_save.css);
 
 @import url(../blocks/opacity-transition/opacity-transition.css);
-@import url(../blocks/opacity-transition/_type/opacity-transition_type_05.css);
-@import url(../blocks/opacity-transition/_type/opacity-transition_type_06.css);
-@import url(../blocks/opacity-transition/_type/opacity-transition_type_08.css);
+@import url(../blocks/opacity-transition/_type/opacity-transition_type_small.css);
+@import url(../blocks/opacity-transition/_type/opacity-transition_type_medium.css);
+@import url(../blocks/opacity-transition/_type/opacity-transition_type_large.css);
 
 @import url(../blocks/elements-list/elements-list.css);
 @import url(../blocks/element/element.css);
