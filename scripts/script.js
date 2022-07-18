@@ -35,6 +35,9 @@ editBtn.addEventListener('click', openPopup);
 popupForm.addEventListener('submit', saveAndClosePopup);
 closeBtn.addEventListener('click', closePopup);
 
-for (let i = 0; i < heart.length; i++) {
-  heart[i].addEventListener('click', () => putLike(i));
-}
+// for (let i = 0; i < heart.length; i++) {
+//   heart[i].addEventListener('click', () => putLike(i));
+// }
+heart.forEach(function(item, index){
+  item.addEventListener('click', () => putLike(index));
+})
