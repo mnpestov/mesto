@@ -40,14 +40,9 @@ const initialCards = [
   }
 ];
 
-//добавляю дефолтные карточки
-initialCards.forEach(function(item) {
-  addCard(item);
-});
 //функция добавления карточек
 function addCard(item) {
   const templateElement = document.querySelector('#element').content;
-  const elements = document.querySelector('.elements-list');
   const element = templateElement.querySelector('.element').cloneNode(true);
   element.querySelector('.element__image').src = item.link;
   element.querySelector('.element__image').alt = 'Изображение ' + item.name;
@@ -69,14 +64,24 @@ function addCard(item) {
     popupImageForm.querySelector('.popup__subtitle').textContent = evt.target.parentElement.querySelector('.element__title').textContent;
     popupImageForm.classList.add('popup_opened');
   });
+  return (element)
+}
 
-  elements.prepend(element);
+function renderCard(newCard) {
+  const elements = document.querySelector('.elements-list');
+  const card = addCard(newCard);
+  elements.prepend(card);
 }
 
 function openOrClosePopup(form) {
   form.classList.toggle('popup_opened');
 }
 
+//добавляю дефолтные карточки
+initialCards.forEach(function(item) {
+  renderCard(item);
+});
+//добавляю лисенеры
 editBtn.addEventListener('click', function() {
   inputName.value = profileName.textContent;
   inputAboutMe.value = aboutMe.textContent;
@@ -95,7 +100,7 @@ popupAddForm.addEventListener('submit', function(evt) {
     name: inputNameOfImage.value,
     link: inputUrl.value
   };
-  addCard(newCard);
+  renderCard(newCard);
   openOrClosePopup(popupAddForm);
   inputNameOfImage.value = '';
   inputUrl.value = '';
