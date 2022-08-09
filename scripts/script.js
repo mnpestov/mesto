@@ -115,6 +115,7 @@ popupCardEditButton.addEventListener('click', function () {
 popupCardOpenButton.addEventListener('click', function () {
   const inputList = Array.from(popupAddForm.querySelectorAll('.popup__input'));
   const buttonElement = popupAddForm.querySelector('.button_type_submit');
+  reset(popupAddForm);
   //проверяю  остояние кнопки сабмита
   toggleButtonState(inputList, buttonElement, config.inactiveButtonClass, config.opacityLargeClass);
   cleanInputError(popupAddForm);
@@ -148,6 +149,6 @@ popupCardCloseButton.forEach(function (item) {
   item.addEventListener('click', function (evt) {
     const form = evt.target.closest('.popup');
     closePopup(form);
-    reset(form);
+    // reset(form);
   });
 });
