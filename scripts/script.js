@@ -149,6 +149,5 @@ popupCardCloseButton.forEach(function (item) {
   item.addEventListener('click', function (evt) {
     const form = evt.target.closest('.popup');
     closePopup(form);
-    // reset(form);
   });
 });
