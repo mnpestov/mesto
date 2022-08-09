@@ -13,6 +13,15 @@ const popupAddForm = page.querySelector('.popup_type_add');
 const popupImageForm = page.querySelector('.popup_type_image');
 const elements = page.querySelector('.elements-list');
 const popupPicture = popupImageForm.querySelector('.popup__image');
+const config = {
+  formSelector: '.popup',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.button_type_submit',
+  inactiveButtonClass: 'button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active',
+  opacityLargeClass: 'opacity-transition_type_large'
+};
 const initialCards = [
     {
       name: 'Архыз',
