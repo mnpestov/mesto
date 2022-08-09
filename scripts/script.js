@@ -3,6 +3,14 @@ function reset(form) {
   form.reset();
 }
 
+//универсальная функция очистки информации об ошибках
+function cleanInputError(form) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  inputList.forEach(function (inputElement) {
+    hideInputError(form, inputElement, config.inputErrorClass, config.errorClass);
+  });
+}
+
 //универсальная функция открытия формы
 function openPopup(form) {
   form.classList.add('popup_opened');
@@ -11,9 +19,9 @@ function openPopup(form) {
 //универсальная функция закрытия формы
 function closePopup(form) {
   form.classList.remove('popup_opened');
-//снимаю слушатель нажатия клавиши esc
+  //снимаю слушатель нажатия клавиши esc
   document.removeEventListener('keydown', closePopupEsc);
-//снимаю слушатель нажатия на оверлэй
+  //снимаю слушатель нажатия на оверлэй
   form.removeEventListener('click', closeByClickingOnOverlay);
 }
 
@@ -95,8 +103,9 @@ popupCardEditButton.addEventListener('click', function () {
   const buttonElement = popupEditForm.querySelector('.button_type_submit');
   inputName.value = profileName.textContent;
   inputAboutMe.value = aboutMe.textContent;
-//проверяю  остояние кнопки сабмита
+  //проверяю  остояние кнопки сабмита
   toggleButtonState(inputList, buttonElement, config.inactiveButtonClass, config.opacityLargeClass);
+  cleanInputError(popupEditForm);
   openPopup(popupEditForm);
   document.addEventListener('keydown', closePopupEsc);
   popupEditForm.addEventListener('click', closeByClickingOnOverlay);
@@ -106,8 +115,9 @@ popupCardEditButton.addEventListener('click', function () {
 popupCardOpenButton.addEventListener('click', function () {
   const inputList = Array.from(popupAddForm.querySelectorAll('.popup__input'));
   const buttonElement = popupAddForm.querySelector('.button_type_submit');
-//проверяю  остояние кнопки сабмита
+  //проверяю  остояние кнопки сабмита
   toggleButtonState(inputList, buttonElement, config.inactiveButtonClass, config.opacityLargeClass);
+  cleanInputError(popupAddForm);
   openPopup(popupAddForm);
   document.addEventListener('keydown', closePopupEsc);
   popupAddForm.addEventListener('click', closeByClickingOnOverlay);
@@ -139,9 +149,5 @@ popupCardCloseButton.forEach(function (item) {
     const form = evt.target.closest('.popup');
     closePopup(form);
     reset(form);
-    const inputList = Array.from(form.querySelectorAll(config.inputSelector));
-    inputList.forEach(function (inputElement) {
-      hideInputError(form, inputElement, config.inputErrorClass, config.errorClass);
-    });
   });
 });
