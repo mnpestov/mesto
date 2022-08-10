@@ -3,26 +3,18 @@ function reset(form) {
   form.reset();
 }
 
-//универсальная функция очистки информации об ошибках
-function cleanInputError(form) {
-  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
-  inputList.forEach(function (inputElement) {
-    hideInputError(form, inputElement, config.inputErrorClass, config.errorClass);
-  });
-}
-
 //универсальная функция открытия формы
-function openPopup(form) {
-  form.classList.add('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
 //универсальная функция закрытия формы
-function closePopup(form) {
-  form.classList.remove('popup_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
   //снимаю слушатель нажатия клавиши esc
   document.removeEventListener('keydown', closePopupEsc);
   //снимаю слушатель нажатия на оверлэй
-  form.removeEventListener('click', closeByClickingOnOverlay);
+  popup.removeEventListener('click', closeByClickingOnOverlay);
 }
 
 //функция закртия формы нажатием на esc
@@ -35,11 +27,8 @@ function closePopupEsc(evt) {
 
 //функция закрытия формы нажатием на оверлэй
 function closeByClickingOnOverlay(evt) {
-  const form = document.querySelector('.popup_opened');
-  const popupContainer = form.querySelector('.popup__container');
-  const popupImageContainer = form.querySelector('.popup__image-container');
-  if ((evt.target.closest('.popup__container') !== popupContainer) || (evt.target.closest('.popup__image-container') !== popupImageContainer)) {
-    closePopup(form);
+  if (!(evt.target.closest('.popup__container')) || !(evt.target.closest('.popup__image-container'))) {
+    closePopup(evt.target);
   }
 }
 
@@ -99,12 +88,10 @@ elements.addEventListener('click', function (evt) {
 
 //обрабатываю событие нажатия на кнопку редактирования данных профиля
 popupCardEditButton.addEventListener('click', function () {
-  const inputList = Array.from(popupEditForm.querySelectorAll('.popup__input'));
-  const buttonElement = popupEditForm.querySelector('.button_type_submit');
   inputName.value = profileName.textContent;
   inputAboutMe.value = aboutMe.textContent;
   //проверяю  остояние кнопки сабмита
-  toggleButtonState(inputList, buttonElement, config.inactiveButtonClass, config.opacityLargeClass);
+  toggleButtonState(inputListEditForm, buttonElementEditForm, config.inactiveButtonClass, config.opacityLargeClass);
   cleanInputError(popupEditForm);
   openPopup(popupEditForm);
   document.addEventListener('keydown', closePopupEsc);
@@ -113,11 +100,9 @@ popupCardEditButton.addEventListener('click', function () {
 
 //обрабатываю событие нажатия на кнопку добавления новой карточки
 popupCardOpenButton.addEventListener('click', function () {
-  const inputList = Array.from(popupAddForm.querySelectorAll('.popup__input'));
-  const buttonElement = popupAddForm.querySelector('.button_type_submit');
   reset(popupAddForm);
   //проверяю  остояние кнопки сабмита
-  toggleButtonState(inputList, buttonElement, config.inactiveButtonClass, config.opacityLargeClass);
+  toggleButtonState(inputListAddForm, buttonElementAddForm, config.inactiveButtonClass, config.opacityLargeClass);
   cleanInputError(popupAddForm);
   openPopup(popupAddForm);
   document.addEventListener('keydown', closePopupEsc);
@@ -141,7 +126,7 @@ popupAddForm.addEventListener('submit', function (evt) {
   };
   renderCard(newCard);
   closePopup(popupAddForm);
-  reset(popupAddForm);
+  //reset(popupAddForm);
 });
 
 //обрабатываю событие нажатия на кнопку закрытия попапа
