@@ -1,10 +1,14 @@
+import {config, initialCards, inputNameOfImage, popupCardCloseButton, inputUrl, popupPicture, popupImageForm, elements, popupCardEditButton, inputName, inputAboutMe, popupEditForm, functions, profileName, aboutMe, popupCardOpenButton, popupAddForm} from './variables.js';
+import {Card} from './Card.js';
+import {FormValidator} from './validate.js';
+
 //универсальная функция сброса формы
 function reset(form) {
   form.reset();
 }
 
 //универсальная функция открытия формы
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
@@ -33,18 +37,18 @@ function closeByClickingOnOverlay(evt) {
 }
 
 //функция постановки и снятия лайка
-function toggleLike(likeElement) {
+functions.toggleLike = function toggleLike(likeElement) {
   likeElement.classList.toggle('element__like_active');
   likeElement.classList.toggle('opacity-transition_type_small');
 }
 
 //функция удаления карточки
-function trashImage(trashElement) {
+functions.trashImage = function trashImage(trashElement) {
   trashElement.closest('.element').remove();
 }
 
 //функция открытия попапа картинки
-function openImagePage(imageElement) {
+functions.openImagePage = function openImagePage(imageElement) {
   popupPicture.src = imageElement.currentSrc;
   popupPicture.alt = imageElement.alt;
   popupImageForm.querySelector('.popup__subtitle').textContent = imageElement.parentElement.querySelector('.element__title').textContent;
@@ -53,46 +57,23 @@ function openImagePage(imageElement) {
   popupImageForm.addEventListener('click', closeByClickingOnOverlay);
 }
 
-//функция создания карточек
-function createCard(item) {
-  const templateElement = document.querySelector('#element').content;
-  const element = templateElement.querySelector('.element').cloneNode(true);
-  const elementPicture = element.querySelector('.element__image');
-  elementPicture.src = item.link;
-  elementPicture.alt = 'Изображение ' + item.name;
-  element.querySelector('.element__title').textContent = item.name;
-  return (element)
-}
-
-//функция добавления карточек
 function renderCard(newCard) {
-  const card = createCard(newCard);
-  elements.prepend(card);
+  console.log(functions);
+  const card = new Card(newCard, functions, '#element');
+  const cardElement = card.generateCard();
+  elements.prepend(cardElement);
 }
 
-//добавляю дефолтные карточки
 initialCards.forEach(function (item) {
   renderCard(item);
-});
-
-//обрабатываю события нажатия на лайки, корзины и картинки
-elements.addEventListener('click', function (evt) {
-  if (evt.target.classList.contains('element__like')) {
-    toggleLike(evt.target);
-  } else if (evt.target.classList.contains('element__trash')) {
-    trashImage(evt.target);
-  } else if (evt.target.classList.contains('element__image')) {
-    openImagePage(evt.target);
-  }
 });
 
 //обрабатываю событие нажатия на кнопку редактирования данных профиля
 popupCardEditButton.addEventListener('click', function () {
   inputName.value = profileName.textContent;
   inputAboutMe.value = aboutMe.textContent;
-  //проверяю  остояние кнопки сабмита
-  toggleButtonState(inputListEditForm, buttonElementEditForm, config.inactiveButtonClass, config.opacityLargeClass);
-  cleanInputError(popupEditForm);
+  const formValidator = new FormValidator(config, '.popup_type_edit');
+  formValidator.enableValidation();
   openPopup(popupEditForm);
   document.addEventListener('keydown', closePopupEsc);
   popupEditForm.addEventListener('click', closeByClickingOnOverlay);
@@ -101,9 +82,9 @@ popupCardEditButton.addEventListener('click', function () {
 //обрабатываю событие нажатия на кнопку добавления новой карточки
 popupCardOpenButton.addEventListener('click', function () {
   reset(popupAddForm);
-  //проверяю  остояние кнопки сабмита
-  toggleButtonState(inputListAddForm, buttonElementAddForm, config.inactiveButtonClass, config.opacityLargeClass);
-  cleanInputError(popupAddForm);
+
+  const formValidator = new FormValidator(config, '.popup_type_add');
+  formValidator.enableValidation();
   openPopup(popupAddForm);
   document.addEventListener('keydown', closePopupEsc);
   popupAddForm.addEventListener('click', closeByClickingOnOverlay);
@@ -126,7 +107,6 @@ popupAddForm.addEventListener('submit', function (evt) {
   };
   renderCard(newCard);
   closePopup(popupAddForm);
-  //reset(popupAddForm);
 });
 
 //обрабатываю событие нажатия на кнопку закрытия попапа

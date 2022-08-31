@@ -15,7 +15,6 @@ const elements = page.querySelector('.elements-list');
 const popupPicture = popupImageForm.querySelector('.popup__image');
 
 const config = {
-  formSelector: '.popup',
   inputSelector: '.popup__input',
   submitButtonSelector: '.button_type_submit',
   inactiveButtonClass: 'button_inactive',
@@ -23,10 +22,7 @@ const config = {
   errorClass: 'popup__input-error_active',
   opacityLargeClass: 'opacity-transition_type_large'
 };
-const inputListAddForm = Array.from(popupAddForm.querySelectorAll(config.inputSelector));
-const buttonElementAddForm = popupAddForm.querySelector(config.submitButtonSelector);
-const inputListEditForm = Array.from(popupEditForm.querySelectorAll(config.inputSelector));
-const buttonElementEditForm = popupEditForm.querySelector(config.submitButtonSelector);
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -53,3 +49,6 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+const functions = {};
+
+export {functions, config, initialCards, inputNameOfImage, popupCardCloseButton, inputUrl, popupPicture, popupImageForm, elements, popupCardEditButton, inputName, inputAboutMe, popupEditForm, profileName, aboutMe, popupCardOpenButton, popupAddForm};
