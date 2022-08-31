@@ -58,7 +58,6 @@ functions.openImagePage = function openImagePage(imageElement) {
 }
 
 function renderCard(newCard) {
-  console.log(functions);
   const card = new Card(newCard, functions, '#element');
   const cardElement = card.generateCard();
   elements.prepend(cardElement);
