@@ -49,6 +49,5 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const functions = {};
 
-export {functions, config, initialCards, inputNameOfImage, popupCardCloseButton, inputUrl, popupPicture, popupImageForm, elements, popupCardEditButton, inputName, inputAboutMe, popupEditForm, profileName, aboutMe, popupCardOpenButton, popupAddForm};
+export {config, initialCards, inputNameOfImage, popupCardCloseButton, inputUrl, popupPicture, popupImageForm, elements, popupCardEditButton, inputName, inputAboutMe, popupEditForm, profileName, aboutMe, popupCardOpenButton, popupAddForm};

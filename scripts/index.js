@@ -1,6 +1,6 @@
-import {config, initialCards, inputNameOfImage, popupCardCloseButton, inputUrl, popupPicture, popupImageForm, elements, popupCardEditButton, inputName, inputAboutMe, popupEditForm, functions, profileName, aboutMe, popupCardOpenButton, popupAddForm} from './variables.js';
-import {Card} from './Card.js';
-import {FormValidator} from './validate.js';
+import { config, initialCards, inputNameOfImage, popupCardCloseButton, inputUrl, popupPicture, popupImageForm, elements, popupCardEditButton, inputName, inputAboutMe, popupEditForm, profileName, aboutMe, popupCardOpenButton, popupAddForm } from './variables.js';
+import { Card } from './Card.js';
+import { FormValidator } from './validate.js';
 
 //универсальная функция сброса формы
 function reset(form) {
@@ -8,8 +8,10 @@ function reset(form) {
 }
 
 //универсальная функция открытия формы
-export function openPopup(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+  popup.addEventListener('click', closeByClickingOnOverlay);
 }
 
 //универсальная функция закрытия формы
@@ -36,57 +38,43 @@ function closeByClickingOnOverlay(evt) {
   }
 }
 
-//функция постановки и снятия лайка
-functions.toggleLike = function toggleLike(likeElement) {
-  likeElement.classList.toggle('element__like_active');
-  likeElement.classList.toggle('opacity-transition_type_small');
-}
-
-//функция удаления карточки
-functions.trashImage = function trashImage(trashElement) {
-  trashElement.closest('.element').remove();
-}
-
 //функция открытия попапа картинки
-functions.openImagePage = function openImagePage(imageElement) {
-  popupPicture.src = imageElement.currentSrc;
-  popupPicture.alt = imageElement.alt;
-  popupImageForm.querySelector('.popup__subtitle').textContent = imageElement.parentElement.querySelector('.element__title').textContent;
+const openImagePage = function openImagePage(link, name) {
+  popupPicture.src = link;
+  popupPicture.alt = 'Изображение ' + name;
+  popupImageForm.querySelector('.popup__subtitle').textContent = name;
   openPopup(popupImageForm);
-  document.addEventListener('keydown', closePopupEsc);
-  popupImageForm.addEventListener('click', closeByClickingOnOverlay);
 }
 
 function renderCard(newCard) {
-  const card = new Card(newCard, functions, '#element');
+  const card = new Card(newCard, openImagePage, '#element');
   const cardElement = card.generateCard();
-  elements.prepend(cardElement);
+  return cardElement;
 }
 
 initialCards.forEach(function (item) {
-  renderCard(item);
+  const cardElement = renderCard(item);
+  elements.prepend(cardElement);
 });
+
+const addFormValidator = new FormValidator(config, '.popup_type_add');
+addFormValidator.enableValidation();
+const editFormValidator = new FormValidator(config, '.popup_type_edit');
+editFormValidator.enableValidation();
 
 //обрабатываю событие нажатия на кнопку редактирования данных профиля
 popupCardEditButton.addEventListener('click', function () {
   inputName.value = profileName.textContent;
   inputAboutMe.value = aboutMe.textContent;
-  const formValidator = new FormValidator(config, '.popup_type_edit');
-  formValidator.enableValidation();
+  editFormValidator.checkBeforeOpening();
   openPopup(popupEditForm);
-  document.addEventListener('keydown', closePopupEsc);
-  popupEditForm.addEventListener('click', closeByClickingOnOverlay);
 });
 
 //обрабатываю событие нажатия на кнопку добавления новой карточки
 popupCardOpenButton.addEventListener('click', function () {
   reset(popupAddForm);
-
-  const formValidator = new FormValidator(config, '.popup_type_add');
-  formValidator.enableValidation();
+  addFormValidator.checkBeforeOpening();
   openPopup(popupAddForm);
-  document.addEventListener('keydown', closePopupEsc);
-  popupAddForm.addEventListener('click', closeByClickingOnOverlay);
 });
 
 //обрабатываю событие сабмит формы редактирования данных профиля
