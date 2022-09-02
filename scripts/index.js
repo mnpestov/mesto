@@ -92,7 +92,8 @@ popupAddForm.addEventListener('submit', function (evt) {
     name: inputNameOfImage.value,
     link: inputUrl.value
   };
-  renderCard(newCard);
+  const cardElement = renderCard(newCard);
+  elements.prepend(cardElement);
   closePopup(popupAddForm);
 });
 
