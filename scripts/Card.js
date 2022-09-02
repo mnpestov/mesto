@@ -18,7 +18,7 @@ export class Card {
 
   _trashImage() {
     this._element.remove();
-    this._element = null
+    this._element = null;
   }
 
   _setEventListeners() {
