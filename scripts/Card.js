@@ -11,21 +11,22 @@ export class Card {
     return cardElement;
   }
 
-  _toggleLike(likeElement) {
-    likeElement.classList.toggle('element__like_active');
-    likeElement.classList.toggle('opacity-transition_type_small');
+  _toggleLike() {
+    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    this._element.querySelector('.element__like').classList.toggle('opacity-transition_type_small');
   }
 
-  _trashImage(trashElement) {
-    trashElement.closest('.element').remove();
+  _trashImage() {
+    this._element.remove();
+    this._element = null
   }
 
   _setEventListeners() {
     this._element.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('element__like')) {
-        this._toggleLike(evt.target);
+        this._toggleLike();
       } else if (evt.target.classList.contains('element__trash')) {
-        this._trashImage(evt.target);
+        this._trashImage();
       } else if (evt.target.classList.contains('element__image')) {
         this._openImagePage(this._image, this._name);
       }
