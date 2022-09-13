@@ -1,14 +1,14 @@
 import '../index.css';
 import { config, initialCards, popupCardEditButton, inputName, inputAboutMe, popupCardOpenButton } from '../utils/variables.js';
 import { Card } from '../components/Card.js';
-import { FormValidator } from '../components/validate.js';
+import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 
 //функция открытия попапа картинки
-const openImagePage = function openImagePage(link, name) {
+const openImagePage = function (link, name) {
   popupImageForm.open(link, name);
 }
 const userInfo = new UserInfo('.profile__name', '.profile__about-me');
@@ -18,11 +18,19 @@ addFormValidator.enableValidation();
 const editFormValidator = new FormValidator(config, '.popup_type_edit');
 editFormValidator.enableValidation();
 
+function createCard(item) {
+  const card = new Card(item, openImagePage, {
+    templateSelector: '#element',
+    elementSelector: '.element'
+  });
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
 //Создаю дефолтные карточки
 const newCardList = new Section({
   renderer: (item) => {
-    const card = new Card(item, openImagePage, '#element');
-    const cardElement = card.generateCard();
+    const cardElement = createCard(item);
     newCardList.addItem(cardElement);
   }
 }, '.elements-list');
@@ -36,10 +44,8 @@ const popupEditForm = new PopupWithForm({
 popupEditForm.setEventListeners();
 //обрабатываю событие нажатия на кнопку редактирования данных профиля
 popupCardEditButton.addEventListener('click', () => {
-  const curentUserInfo = userInfo.getUserInfo();
-  inputName.value = curentUserInfo.userName;
-  inputAboutMe.value = curentUserInfo.userDescription;
-  editFormValidator.checkBeforeOpening();
+  popupEditForm.setInputValue(userInfo.getUserInfo());
+  editFormValidator.resetValidation();
   popupEditForm.open();
 });
 
@@ -51,8 +57,7 @@ const popupAddForm = new PopupWithForm({
 popupAddForm.setEventListeners();
 //обрабатываю событие нажатия на кнопку добавления новой карточки
 popupCardOpenButton.addEventListener('click', function () {
-  popupAddForm.reset();
-  addFormValidator.checkBeforeOpening();
+  addFormValidator.resetValidation();
   popupAddForm.open();
 });
 

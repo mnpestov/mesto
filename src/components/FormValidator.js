@@ -66,7 +66,7 @@ export class FormValidator {
     });
   };
 
-  checkBeforeOpening() {
+  resetValidation() {
     this._cleanInputError();
     this._toggleButtonState();
   }
