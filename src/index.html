@@ -5,18 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="logo" src="images/logo.svg" alt="Лого">
+      <img class="logo" src="<%=require('./images/logo.svg')%>" alt="Лого">
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="images/avatar-square.jpg" alt="Аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar-square.jpg')%>" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button"
@@ -41,12 +40,12 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__set">
           <label class="popup__field">
-            <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" id="name-input"
+            <input type="text" name="name" placeholder="Имя" class="popup__input popup__input_type_name" id="name-input"
               autocomplete="off" minlength="2" maxlength="40" required>
             <span class="popup__input-error name-input-error"></span>
           </label>
           <label class="popup__field">
-            <input type="text" placeholder="О себе" class="popup__input popup__input_type_about-me" id="about-me"
+            <input type="text" name="aboutMe" placeholder="О себе" class="popup__input popup__input_type_about-me" id="about-me"
               autocomplete="off" minlength="2" maxlength="200" required>
             <span class="popup__input-error about-me-error"></span>
           </label>
@@ -62,12 +61,12 @@
         <h2 class="popup__title">Новое место</h2>
         <fieldset class="popup__set">
           <label class="popup__field">
-            <input type="text" placeholder="Название" class="popup__input popup__input_type_name-of-image"
+            <input type="text" name="name" placeholder="Название" class="popup__input popup__input_type_name-of-image"
               id="name-of-image" autocomplete="off" minlength="2" maxlength="30" required>
             <span class="popup__input-error name-of-image-error"></span>
           </label>
           <label class="popup__field">
-            <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_type_url" id="url-input"
+            <input type="url" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_url" id="url-input"
               autocomplete="off" required>
             <span class="popup__input-error url-input-error"></span>
           </label>
@@ -96,7 +95,6 @@
       </div>
     </li>
   </template>
-  <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>
