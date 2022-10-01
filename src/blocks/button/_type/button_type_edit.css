@@ -9,7 +9,8 @@
   .button_type_edit {
     width: 18px;
     height: 18px;
-    margin-top: 8px;
+    margin-top: 0px;
     background-size: 7.5px;
+    align-self: center;
   }    
 }

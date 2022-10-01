@@ -5,11 +5,16 @@ export class PopupWithForm extends Popup {
         super(popupSelector);
         this._submitForm = submitForm;
         this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
+        this._button = this._popup.querySelector('.button_type_submit');
     }
 
     close() {
         super.close();
         this._popup.reset();
+    }
+
+    toggleSubmitButton(bool) {
+        bool ? this._button.textContent = 'Сохранение...' : this._button.textContent = 'Сохранить';
     }
 
     _getInputValues() {
