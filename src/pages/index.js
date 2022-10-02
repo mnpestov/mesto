@@ -49,6 +49,7 @@ const popupEditAvatar = new PopupWithForm({
     api.patchUserAvatar(inputValue)
       .then(data => {
         userInfo.setUserAvatar(data);
+        popupEditAvatar.close();
       })
       .finally(() => popupEditAvatar.toggleSubmitButton(false))
       .catch(err => console.log('Ошибка',err));
@@ -71,7 +72,10 @@ const popupEditForm = new PopupWithForm({
   submitForm: (inputValue) => {
     popupEditForm.toggleSubmitButton(true);
     api.patchUserInfo(inputValue)
-      .then(data => userInfo.setUserInfo(data))
+      .then(data => {
+        userInfo.setUserInfo(data);
+        popupEditForm.close();
+      })
       .finally(() => popupEditForm.toggleSubmitButton(false))
       .catch(err => console.log('Ошибка',err));
   }
@@ -113,6 +117,7 @@ api.getAllInfo()
         api.postCard(inputValue)
           .then(data => {
             newCardList.renderItems([data]);
+            popupAddForm.close();
           })
           .finally(() => popupAddForm.toggleSubmitButton(false))
           .catch(err => console.log('Ошибка',err));
